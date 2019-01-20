@@ -1,26 +1,20 @@
 function quickSort(unsortedArray) {
-  let sortingArray = [...unsortedArray];
-  const pivot = sortingArray[sortingArray.length - 1];
-  let smallerArray = [];
-  let biggerArray = [];
-  let equalArray = [];
 
-  if(sortingArray.length <= 1) {
-    return sortingArray;
+  if(unsortedArray.length <= 1) {
+    return unsortedArray;
   }
 
-  for(var i = 0; i < sortingArray.length - 1; i++) {
+  let sortingArray = [...unsortedArray]
+  const pivot = sortingArray.pop();
+  let smallerArray = [];
+  let biggerArray = [];
 
-    if(sortingArray[i] <= pivot) {
-      smallerArray.push(sortingArray[i]);
-    }
-    else if(sortingArray[i] > pivot) {
-      biggerArray.push(sortingArray[i]);
-    }
-  };
+
+  sortingArray.forEach(element =>
+    element < pivot ? smallerArray.push(element) : biggerArray.push(element)
+  )
+
   return [...quickSort(smallerArray), pivot, ...quickSort(biggerArray)];
 }
-
-
 
 module.exports = quickSort;
